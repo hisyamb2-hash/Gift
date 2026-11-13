@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090d20">
+<title>For My Liyana ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: radial-gradient(ellipse at top,#26345d,#10172e 55%,#070b18);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+.stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(2px 2px at 10% 20%,white,transparent),
+      radial-gradient(2px 2px at 40% 60%,white,transparent),
+      radial-gradient(2px 2px at 80% 15%,white,transparent),
+      radial-gradient(2px 2px at 70% 85%,white,transparent),
+      radial-gradient(2px 2px at 20% 90%,white,transparent);
+    background-size: 180px 180px;
+    animation: twinkle 4s infinite alternate;
+}
+
+@keyframes twinkle {
+    from {opacity:.3}
+    to {opacity:1}
+}
+
+.moon {
+    position:fixed;
+    top:45px;
+    right:35px;
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    background:#fff1ce;
+    box-shadow:0 0 40px #fff1ce88;
+}
+
+.page {
+    position:relative;
+    z-index:2;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:35px 18px;
+}
+
+.small {
+    font-size:10px;
+    letter-spacing:4px;
+    color:#e8b7cb;
+    margin-bottom:15px;
+}
+
+h1 {
+    font-family:'Great Vibes',cursive;
+    font-size:55px;
+    font-weight:normal;
+    color:#ffd3e3;
+    text-shadow:0 0 20px #ff719c88;
+}
+
+.subtitle {
+    font-size:12px;
+    color:#c7cce0;
+    margin:10px 0 35px;
+}
+
+/* ENVELOPE */
+
+.envelope-wrap {
+    width:280px;
+    height:190px;
+    position:relative;
+    perspective:1000px;
+    margin:15px auto 25px;
+}
+
+.envelope {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:155px;
+    background:#b84d76;
+    border-radius:5px;
+    box-shadow:0 15px 40px #0008;
+}
+
+.envelope:before {
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:3;
+    border-left:140px solid transparent;
+    border-right:140px solid transparent;
+    border-top:105px solid #f0a5bf;
+    transform-origin:top;
+    transition:transform 1s;
+}
+
+.envelope.open:before {
+    transform:rotateX(180deg);
+}
+
+.envelope:after {
+    content:"";
+    position:absolute;
+    z-index:2;
+    bottom:0;
+    border-left:140px solid #cf7195;
+    border-right:140px solid #d985a5;
+    border-top:78px solid transparent;
+}
+
+.seal {
+    position:absolute;
+    z-index:5;
+    top:53px;
+    left:50%;
+    transform:translateX(-50%);
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#a51f48;
+    display:grid;
+    place-items:center;
+    font-size:22px;
+    box-shadow:0 3px 10px #0005;
+    transition:opacity .4s;
+}
+
+.envelope.open .seal {
+    opacity:0;
+}
+
+.letter-inside {
+    position:absolute;
+    z-index:1;
+    bottom:15px;
+    left:10px;
+    width:260px;
+    height:120px;
+    background:#fff1e8;
+    border-radius:4px;
+    transition:transform 1s;
+}
+
+.envelope.open .letter-inside {
+    transform:translateY(-95px);
+}
+
+.envelope-label {
+    position:absolute;
+    z-index:4;
+    bottom:15px;
+    width:100%;
+    font-size:11px;
+    letter-spacing:2px;
+    color:white;
+}
+
+/* QUESTION */
+
+.question {
+    width:100%;
+    max-width:360px;
+}
+
+.question h2 {
+    font-family:'Great Vibes',cursive;
+    font-size:32px;
+    color:#ffcee0;
+    font-weight:normal;
+    margin-bottom:10px;
+}
+
+.question p {
+    font-size:12px;
+    color:#d2d4e6;
+}
+
+.buttons {
+    position:relative;
+    width:100%;
+    height:90px;
+    margin-top:15px;
+}
+
+.choice {
+    position:absolute;
+    top:15px;
+    padding:12px 30px;
+    border-radius:30px;
+    border:0;
+    color:white;
+    font-family:inherit;
+    font-size:13px;
+    cursor:pointer;
+}
+
+.yes {
+    left:17%;
+    background:linear-gradient(135deg,#e85d88,#a92255);
+    box-shadow:0 0 20px #ec6a9780;
+}
+
+.no {
+    left:57%;
+    background:#414966;
+    transition:left .18s,top .18s;
+    z-index:10;
+}
+
+.hint {
+    font-size:10px;
+    color:#aeb5d1;
+    margin-top:8px;
+}
+
+/* AFTER YES */
+
+#celebration {
+    display:none;
+    width:100%;
+    max-width:420px;
+    animation:fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+    from {opacity:0;transform:translateY(20px)}
+    to {opacity:1;transform:translateY(0)}
+}
+
+#celebration h2 {
+    font-family:'Great Vibes',cursive;
+    font-size:43px;
+    color:#ffc7d9;
+    font-weight:normal;
+    margin:15px 0;
+}
+
+#celebration .intro {
+    font-size:12px;
+    color:#e4dce8;
+}
+
+/* ROSES */
+
+.bouquet {
+    height:240px;
+    width:100%;
+    position:relative;
+    margin:15px auto 5px;
+    overflow:hidden;
+}
+
+.rose {
+    position:absolute;
+    bottom:12px;
+    width:80px;
+    height:210px;
+    transform:translateX(-50%);
+}
+
+.rose:nth-child(1) {left:30%}
+.rose:nth-child(2) {left:50%;height:235px}
+.rose:nth-child(3) {left:70%;height:205px}
+
+.stem {
+    position:absolute;
+    bottom:0;
+    left:50%;
+    width:5px;
+    height:0;
+    border-radius:10px;
+    background:linear-gradient(90deg,#174b2c,#64a45e,#174b2c);
+    transform:translateX(-50%);
+    transition:height 2s ease;
+}
+
+.grown .stem {
+    height:var(--stem);
+}
+
+.leaf {
+    position:absolute;
+    width:33px;
+    height:16px;
+    background:linear-gradient(135deg,#83bd64,#28643a);
+    border-radius:100% 0 100% 0;
+    opacity:0;
+    transform:scale(0);
+    transition:all 1s ease 1s;
+}
+
+.leaf.l {left:-29px;top:45%}
+.leaf.r {left:3px;top:65%;transform:rotate(65deg) scale(0)}
+
+.grown .leaf {
+    opacity:1;
+    transform:rotate(-15deg) scale(1);
+}
+
+.grown .leaf.r {
+    transform:rotate(65deg) scale(1);
+}
+
+.flower {
+    position:absolute;
+    bottom:var(--stem);
+    left:50%;
+    width:65px;
+    height:65px;
+    transform:translateX(-50%) scale(0);
+    transform-origin:bottom;
+    transition:transform 1.2s cubic-bezier(.2,1.5,.5,1) 1.8s;
+}
+
+.grown .flower {
+    transform:translateX(-50%) scale(1);
+}
+
+.petal {
+    position:absolute;
+    width:34px;
+    height:39px;
+    left:15px;
+    top:6px;
+    border-radius:70% 70% 45% 45%;
+    background:linear-gradient(135deg,#ff9aab,#e32150 60%,#800e32);
+    box-shadow:inset -3px -4px 7px #640b2b66;
+    transform-origin:bottom center;
+    animation:sway 4s ease-in-out infinite alternate;
+}
+
+.petal:nth-child(1) {transform:rotate(0deg) translateY(-5px)}
+.petal:nth-child(2) {transform:rotate(72deg) translateY(-5px)}
+.petal:nth-child(3) {transform:rotate(144deg) translateY(-5px)}
+.petal:nth-child(4) {transform:rotate(216deg) translateY(-5px)}
+.petal:nth-child(5) {transform:rotate(288deg) translateY(-5px)}
+
+.center {
+    position:absolute;
+    left:25px;
+    top:24px;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    background:radial-gradient(circle,#ffb5a5,#a40f37);
+}
+
+@keyframes sway {
+    from {margin-left:-2px}
+    to {margin-left:3px}
+}
+
+/* LOVE MESSAGE */
+
+.love-note {
+    opacity:0;
+    transform:translateY(20px);
+    transition:all 1.2s ease;
+    padding:20px;
+    border:1px solid #ffffff30;
+    background:#ffffff0d;
+    border-radius:20px;
+    margin-top:15px;
+}
+
+.love-note.show {
+    opacity:1;
+    transform:translateY(0);
+}
+
+.love-note h3 {
+    font-family:'Great Vibes',cursive;
+    font-size:36px;
+    color:#ffc5d9;
+    margin-bottom:12px;
+    font-weight:normal;
+}
+
+.love-note p {
+    font-size:12px;
+    line-height:2;
+    color:#f4e9ef;
+}
+
+.signature {
+    font-family:'Great Vibes',cursive;
+    font-size:28px;
+    color:#ffc0d5;
+    margin-top:15px;
+}
+
+/* FALLING PETALS */
+
+.falling {
+    position:fixed;
+    top:-20px;
+    z-index:20;
+    color:#ff7998;
+    pointer-events:none;
+    animation:fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform:translateY(110vh) rotate(600deg);
+        opacity:0;
+    }
+}
+
+@media(max-width:380px) {
+    h1 {font-size:46px}
+    .envelope-wrap {transform:scale(.9)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+<div class="moon"></div>
+
+<main class="page">
+
+    <div class="small">A SPECIAL SURPRISE</div>
+
+    <h1>For My Liyana</h1>
+
+    <p class="subtitle">
+        I have something to give to you tonight...
+    </p>
+
+    <!-- ENVELOPE -->
+
+    <div class="envelope-wrap" id="envelopeWrap">
+        <div class="envelope" id="envelope">
+            <div class="letter-inside"></div>
+            <div class="seal">❤️</div>
+            <div class="envelope-label">OPEN ME</div>
+        </div>
+    </div>
+
+    <!-- QUESTION -->
+
+    <section class="question" id="question">
+
+        <h2>Will you want to hear some from me?</h2>
+
+        <p>One little confession, from my heart to yours.</p>
+
+        <div class="buttons" id="buttonArea">
+
+            <button class="choice yes" onclick="sayYes()">
+                YES ❤️
+            </button>
+
+            <button class="choice no" id="noBtn">
+                NO 🙈
+            </button>
+
+        </div>
+
+        <div class="hint" id="hint">
+            Choose wisely, Yana! 😘
+        </div>
+
+    </section>
+
+    <!-- CELEBRATION -->
+
+    <section id="celebration">
+
+        <p class="intro">YOU JUST MADE MY NIGHT ❤️</p>
+
+        <h2>For You, My Love</h2>
+
+        <p class="intro">
+            These roses are growing just for you...
+        </p>
+
+        <div class="bouquet" id="bouquet">
+
+            <div class="rose" style="--stem:135px">
+                <div class="stem">
+                    <div class="leaf l"></div>
+                    <div class="leaf r"></div>
+                </div>
+                <div class="flower">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="center"></div>
+                </div>
+            </div>
+
+            <div class="rose" style="--stem:175px">
+                <div class="stem">
+                    <div class="leaf l"></div>
+                    <div class="leaf r"></div>
+                </div>
+                <div class="flower">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="center"></div>
+                </div>
+            </div>
+
+            <div class="rose" style="--stem:145px">
+                <div class="stem">
+                    <div class="leaf l"></div>
+                    <div class="leaf r"></div>
+                </div>
+                <div class="flower">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="center"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="love-note" id="loveNote">
+
+            <h3>To My Favourite Girl ❤️</h3>
+
+            <p>
+               Yana,kalau boleh bad nak menjadi sebab di sebalik setiap senyuman yana.
+                <br><br>
+
+              Bad nak menjadi tempat yana bercerita ketika penat, tempat yana mengadu ketika sedih, dan orang yang sentiasa Yana cari ketika bahagia.
+                <br><br>
+
+                Bad mungkin tak mampu bagi Yana dunia yang sempurna, tapi Bad nak menciptakan sebanyak mungkin kenangan indah bersama.
+                <br><br>
+
+              Bunga seroja di atas jambangan,
+              Mekar berseri disimbah cahaya,
+              Jika ditakdir kita berjodohan,
+              Kaulah penghujung segala cinta,
+                <br><br>
+
+              And if love were garden, I would choose to plant a thousand roses just to remind you that you are loved every single day.
+                <br><br>
+
+                You are my sources for peace and happiness.
+                ❤️
+            </p>
+
+            <div class="signature">
+                Forever yours.
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+
+// ==============================
+// NO BUTTON RUNS AWAY
+// ==============================
+
+const noBtn = document.getElementById("noBtn");
+const area = document.getElementById("buttonArea");
+
+function moveNo() {
+
+    const maxX = Math.max(0, area.clientWidth - noBtn.offsetWidth);
+    const maxY = Math.max(0, area.clientHeight - noBtn.offsetHeight);
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    document.getElementById("hint").innerText =
+        "Hehe! Try again, Yana! 🙈";
+}
+
+// Desktop: move when mouse approaches
+noBtn.addEventListener("mouseenter", moveNo);
+
+// Mobile: move when touched
+noBtn.addEventListener("touchstart", function(e) {
+    e.preventDefault();
+    moveNo();
+}, {passive:false});
+
+// Also prevent clicking NO
+noBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    moveNo();
+});
+
+
+// ==============================
+// YES BUTTON
+// ==============================
+
+let accepted = false;
+
+function sayYes() {
+
+    if (accepted) return;
+    accepted = true;
+
+    // Hide question
+    document.getElementById("question").style.display = "none";
+
+    // Open envelope
+    document.getElementById("envelope").classList.add("open");
+
+    setTimeout(() => {
+
+        document.getElementById("envelopeWrap").style.display = "none";
+
+        // Show celebration
+        const celebration =
+            document.getElementById("celebration");
+
+        celebration.style.display = "block";
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+        // Grow roses
+        setTimeout(() => {
+
+            document.querySelectorAll(".rose").forEach((rose,i) => {
+                setTimeout(() => {
+                    rose.classList.add("grown");
+                }, i * 650);
+            });
+
+        }, 300);
+
+        // Reveal love message
+        setTimeout(() => {
+
+            document.getElementById("loveNote")
+                .classList.add("show");
+
+            document.getElementById("loveNote")
+                .scrollIntoView({
+                    behavior:"smooth",
+                    block:"center"
+                });
+
+        }, 4300);
+
+        startPetals();
+
+    }, 1000);
+}
+
+
+// ==============================
+// FALLING PETALS
+// ==============================
+
+let petalsRunning = false;
+
+function startPetals() {
+
+    if (petalsRunning) return;
+    petalsRunning = true;
+
+    setInterval(() => {
+
+        const petal = document.createElement("div");
+
+        petal.className = "falling";
+        petal.innerHTML = "♥";
+
+        petal.style.left = Math.random() * 100 + "vw";
+        petal.style.fontSize =
+            (10 + Math.random() * 15) + "px";
+
+        petal.style.animationDuration =
+            (5 + Math.random() * 5) + "s";
+
+        document.body.appendChild(petal);
+
+        setTimeout(() => petal.remove(), 11000);
+
+    }, 600);
+}
+
+</script>
+
+</body>
+</html>
